@@ -25,8 +25,12 @@ namespace Aura.Channel.Skills.Magic
 		/// <returns></returns>
 		public override StartStopResult Start(Creature creature)
 		{
-			creature.Conditions.Activate(ConditionsA.ManaShield);
-			Send.Effect(creature, Effect.ManaShield);
+			// After duration of DK, use this to engage the Disarm FX.
+			// See the captures to determine the name of the effect for implementation.
+			// creature.Conditions.Activate(ConditionsA.ManaShield);
+			Send.EffectDelayed(creature, 6500, Effect.DkPassiveEngage);
+
+
 
 			return StartStopResult.Okay;
 		}

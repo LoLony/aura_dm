@@ -19,7 +19,7 @@ public class WraithScript : NpcScript
         EquipItem(Pocket.Armor, 13006, 0x00202020, 0x00202020, 0x00202020);
         EquipItem(Pocket.Glove, 16502, 0x00202020, 0x00202020, 0x00202020);
         EquipItem(Pocket.Shoe, 17505, 0x00202020, 0x00202020, 0x00202020);
-        EquipItem(Pocket.RightHand1, 40083, 0x00CECECE, 0x00B2B032, 0x006E6456);
+        EquipItem(Pocket.RightHand1, 40083, 0x00353535, 0x0054524D, 0x0054524D);
         EquipItem(Pocket.LeftHand1, 46006, 0x00202020, 0x00202020, 0x00202020);
 
 		AddPhrase("...");
@@ -60,14 +60,13 @@ public class WraithScript : NpcScript
             int chanceToMove = Convert.ToInt32(Random() % 6);
             if (chanceToMove == 1)
             {
-                /* Position currentPos = this.NPC.GetPosition();
+                Position currentPos = this.NPC.GetPosition();
                 int newX = currentPos.X;
                 int newY = currentPos.Y;
                 newX += Convert.ToInt32(Random(-300, 300) % 100);
                 newY += Convert.ToInt32(Random(-300, 300) % 100);
                 Position newPos = new Position(newX, newY);
-                this.NPC.Move(newPos, true); */
-                Do(Wander(200, 200, false));
+                this.NPC.Move(newPos, true);
             }
         }
     }
@@ -93,7 +92,7 @@ public class WraithScript : NpcScript
 
 			case "@shop":
                 Msg("(Th'Rok has a magical sticky note on his chest.<br/>It reads: 'Please do not abuse this poor golem's sale abilities. He is learning, and will get better soon. -Atlas')");
-                OpenShop("ThrokShop");
+                OpenShop("WraithShop");
 				/* if (this.NPC.RegionId == 1)
                 {
                     Msg("(Th'Rok hopes you'll find the items it found on the plains of Tir satisfactory.)");
@@ -254,7 +253,7 @@ public class WraithScript : NpcScript
 	}
 }
 
-public class ThrokShop : NpcShopScript
+public class WraithShop : NpcShopScript
 {
     public override void Setup()
     {
@@ -289,7 +288,8 @@ public class ThrokShop : NpcShopScript
                 {
                     var item = Item.CreateEnchanted(13015, 21202, 0);               // Marble -> Brigandine
                     var price = Convert.ToInt32(item.OptionInfo.Price * 3.5);       // Cost Multiplier: 3.5x (some freakish ~850k figure)
-                    Add("Rare Items", item, price);
+                    var stock = rnd.Next(1, 4);
+                    Add("Rare Items", item, price, stock);                          // What does this do? Pulled from edern.cs
                     break;
                 }
                 /* case 00000:

@@ -16,8 +16,9 @@ public class ThrokScript : NpcScript
         SetLocation(1, 12800, 38400);
         EquipItem(Pocket.RightHand1, 40901, 0x007F7237, 0x00808080, 0x00D1D947);
 
-        AddGreeting(0, "(The golem can read your thoughts, and it knows you are here.)");
-		AddGreeting(1, "(Th'Rok wants to know what you have to say.)");
+        /* 
+        Msg("(The golem can read your thoughts, and it knows you are here.)");
+		Msg("(Th'Rok wants to know what you have to say.)"); */                    // this was written in an old style! Rewrite!
 
 		AddPhrase("...");
 		AddPhrase("......");
@@ -82,7 +83,8 @@ public class ThrokScript : NpcScript
 		switch (await Select())
 		{
 			case "@talk":
-				Greet();
+				Msg("(The golem can read your thoughts, and it knows you are here.)");
+                Msg("(Th'Rok wants to know what you have to say.)");
 				Msg(Hide.Name, GetMoodString(), FavorExpression());
 				await Conversation();
 				break;
@@ -259,17 +261,18 @@ public class ThrokShop : NpcShopScript
                 {
                     var item = Item.CreateEnchanted(13015, 21202, 0);               // Marble -> Brigandine
                     var price = Convert.ToInt32(item.OptionInfo.Price * 3.5);       // Cost Multiplier: 3.5x (some freakish ~850k figure)
-                    Add("Rare Items", item, price);
+                    var stock = rnd.Next(1, 4);
+                    Add("Rare Items", item, price, stock);                          // What does this do? Pulled from edern.cs
                     break;
                 }
-                case 00000:
+                /* case 00000:
                 {
                     // do whatever
                     // CreateEnchantedItem
                     // CreateEnchant
                     // etc ...
                     // Add(...);
-                }
+                } */
                 default:        // else, just sell item at normal NPC price.
                 {
                     Add("Rare Items", pickID1);
