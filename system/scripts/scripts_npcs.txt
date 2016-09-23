@@ -76,4 +76,7 @@ npcs/sidhe/tarlach_bear.cs
 custom/patrons/trigger.cs
 custom/patrons/pegwald.cs
 
+custom/throk.cs
+custom/wraith.cs
+
 include "/user/scripts/scripts_npcs.txt"

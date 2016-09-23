@@ -1,0 +1,112 @@
+Th'Rok's Rare Item Selection
+
+COMMON POOL
+-----------
+Enchant Scroll
+Wool Collection Pouch
+Cobweb Pouch
+Full Restore
+Holy Water x10
+Good Luck Potion (needs item script)
+Poison Bottle
+Mass Holy Water
+Ancient Magic Powder
+
+
+TIR CHONAILL
+------------
+Life Exploration Fishing Rod
+Eweca Shield
+Bone Marine Armor (Menswear)
+Bone Marine Armor (Womenswear)
+Bone Marine Helm
+Bone Marine Gauntlet
+Bone Marine Boots
+Middle-Class Leather Armor
+
+
+DUNBARTON
+---------
+Life Exploration Cooking Knife
+[Marble] Brigandine
+Eweca Short Sword
+Broken Metal Lightning Wand
+Metal Lightning Wand Repair Kit
+Royal Diamond Leather Light Gauntlets
+
+EMAIN MACHA
+-----------
+Life Exploration Fishing Rod
+Life Exploration Cooking Knife
+Broken Claus Knight Armor
+Claus Knight Armor Repair Kit
+Claus Knight Gauntlet
+Royal Diamond Leather Light Helm
+
+ANOTHER WORLD
+-------------
+Ladeca's Light Short Sword
+Bone Marine Sword
+[Arc Lich's]
+Dustin Silver Knight Armor
+Dustin Silver Knight Helm
+Dustin Silver Knight Vambrance
+Dustin Silver Knight Greaves
+Dustin Silver Knight Sword
+High-Class Leather Armor
+
+GAIRECH
+-------
+Eweca's Light Short Sword
+Ladeca Ice Wand
+Birnam Plate Armor
+Birnam Plate Boots
+Birnam Plate Gauntlets
+Birnam Plate Helmet
+Royal Diamond Leather Light Armor (M)
+Royal Diamond Leather Light Armor (F)
+
+DUGALD ISLE
+-----------
+Eweca's Light Short Sword
+Ladeca Helm
+Valencia's Cross Line Plate Boots
+Valencia's Cross Line Plate Armor (M)
+Valencia's Cross Line Plate Armor (F)
+Valencia's Cross Line Plate Gauntlet
+Royal Diamond Leather Light Boots
+
+VALES
+-----
+Life Exploration Taming Cane
+Ladeca Shield
+Colin Plate Armor
+Colin Plate Boots
+Colin Plate Gauntlet
+Colin Plate Helmet
+Glowing Frost Crystal
+Broken Ice Piece
+
+FILIA
+-----
+Life Exploration Taming Cane
+Ladeca Shield
+Turban Shell Armor (F)
+Turban Shell Armor (M)
+Turban Shell Helmet (M)
+Turban Shell Helmet (F)
+Turban Shell Boots (M)
+Turban Shell Boots (F)
+Turban Shell Gauntlet
+
+QILLA BASE CAMP
+---------------
+Life Exploration Taming Cane
+Ladeca Short Sword
+Trinity Circlet
+Trinity Wear (M)
+Trinity Wear (F)
+Trinity Gloves
+Trinity Shoes
+Gamyu Wizard Robe Armor (F)
+Gamyu Wizard Robe Armor (M)
