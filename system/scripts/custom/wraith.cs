@@ -11,21 +11,22 @@ public class WraithScript : NpcScript
 	public override void Load()
 	{
         SetRace(17701);
-        SetName("WraithHollow Knight");
+        SetName("Arabraxos");
         SetBody(height: 1.51f);
         SetColor(0x00202020, 0x00202020, 0x00202020);
         SetLocation(1, 16128, 38844, 219);
 
+        EquipItem(Pocket.Head, 18661, 0x00202020, 0x00202020, 0x00202020);
         EquipItem(Pocket.Armor, 13006, 0x00202020, 0x00202020, 0x00202020);
         EquipItem(Pocket.Glove, 16502, 0x00202020, 0x00202020, 0x00202020);
         EquipItem(Pocket.Shoe, 17505, 0x00202020, 0x00202020, 0x00202020);
         EquipItem(Pocket.RightHand1, 40083, 0x00353535, 0x0054524D, 0x0054524D);
         EquipItem(Pocket.LeftHand1, 46006, 0x00202020, 0x00202020, 0x00202020);
 
-		AddPhrase("...");
+		AddPhrase("Ahh...");
 		AddPhrase("......");
-		AddPhrase("...!");
-		AddPhrase("...?");
+		AddPhrase("Hmm...!");
+		AddPhrase("Hmm...?");
 	}
 
     [On("ErinnTimeTick")]
@@ -33,7 +34,7 @@ public class WraithScript : NpcScript
     {
         if (time.Minute == 0 && (time.Hour % 2 == 0)) // Every six hours, WarpFlash to another region if it is not this one
         {
-            switch (Convert.ToInt32(Random() % 6))
+            /* switch (Convert.ToInt32(Random() % 6))
             {
                 case 0:
                     if (this.NPC.RegionId != 1) {NPC.WarpFlash(1, 12800, 38400);}
@@ -53,7 +54,7 @@ public class WraithScript : NpcScript
                 case 5:
                     if (this.NPC.RegionId != 16) {NPC.WarpFlash(16, 28300, 23800);}
                     break;
-            }
+            } */
         }
         else        // If it is not x:00, there's a 0~6 chance to move
         {
@@ -75,9 +76,9 @@ public class WraithScript : NpcScript
 	{
 
 		await Intro(
-			"The old golem turns to face you, and you can feel your minds meet.",
-			"It seems like it wishes it could be of more help,",
-			"offering some items it's collected along the way."
+			"At first it appears to be a knight in dark armor,",
+			"but upon second glance, you see there's nobody inside.",
+			"The armor seems to be moving on its own. A deep voice bellows out from within..."
 		);
 
 		Msg("(The golem wants to know if it can be of service.)", Button("Start a Conversation", "@talk"), Button("Shop", "@shop"), Button("Repair Item", "@repair"));
