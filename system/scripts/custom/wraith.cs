@@ -81,7 +81,7 @@ public class WraithScript : NpcScript
 			"The armor seems to be moving on its own. A deep voice bellows out from within..."
 		);
 
-		Msg("(The golem wants to know if it can be of service.)", Button("Start a Conversation", "@talk"), Button("Shop", "@shop"), Button("Repair Item", "@repair"));
+		Msg("Greetings, wayward Milletian.", Button("Start a Conversation", "@talk"), Button("Shop", "@shop"), Button("Repair Item", "@repair"));
 
 		switch (await Select())
 		{
@@ -92,7 +92,7 @@ public class WraithScript : NpcScript
 				break;
 
 			case "@shop":
-                Msg("(Th'Rok has a magical sticky note on his chest.<br/>It reads: 'Please do not abuse this poor golem's sale abilities. He is learning, and will get better soon. -Atlas')");
+                Msg("");
                 OpenShop("WraithShop");
 				/* if (this.NPC.RegionId == 1)
                 {
