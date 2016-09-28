@@ -261,6 +261,8 @@ namespace Aura.Mabi.Network
 		public const int ChangeStanceRequestR = 0x6E29;
 		public const int ChangeStance = 0x6E2A;
 
+        public const int ToggleSkill = 0x69A2;
+
 		public const int RiseFromTheDead = 0x701D;
 		public const int CharacterLock = 0x701E;
 		public const int CharacterUnlock = 0x701F;
@@ -366,6 +368,9 @@ namespace Aura.Mabi.Network
 		public const int EntrustmentSetMaterial = 0x747D;
 		public const int StatUpdatePrivate = 0x7530;
 		public const int StatUpdatePublic = 0x7532;
+
+        public const int WhatDoesThisDo = 0x7534;   // ?
+
 		public const int CombatTargetUpdate = 0x791A; // ?
 		public const int UnkCombat = 0x791B; // ?
 		public const int UnkCombatR = 0x791C; // ?

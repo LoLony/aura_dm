@@ -15,7 +15,7 @@ namespace Aura.Channel.Skills.Magic
 	/// <remarks>
 	/// Variables currently unknown.
 	/// </remarks>
-	[Skill(SkillId.ManaShield)]
+	[Skill(SkillId.SoulOfChaos)]
 	public class SoulOfChaos : StartStopSkillHandler
 	{
 		/// <summary>
@@ -30,7 +30,16 @@ namespace Aura.Channel.Skills.Magic
 			// creature.Conditions.Activate(ConditionsA.ManaShield);
 			Send.EffectDelayed(creature, 6500, Effect.DkPassiveEngage);
 
+			if (true)	// not used today
+			{
 
+			}
+			else // used today
+			{
+				Send.ServerMessage(creature, Localization.Get("You can't use this any more today."));
+				Send.SkillUseSilentCancel(creature);
+				// return; 		needed?
+			}
 
 			return StartStopResult.Okay;
 		}
@@ -44,7 +53,7 @@ namespace Aura.Channel.Skills.Magic
 		/// <returns></returns>
 		public override StartStopResult Stop(Creature creature)
 		{
-			creature.Conditions.Deactivate(ConditionsA.ManaShield);
+			if (creature.Conditions.Has(ConditionsA.CancelDarkKnight)) {creature.Conditions.Deactivate(ConditionsA.CancelDarkKnight);}
 
 			return StartStopResult.Okay;
 		}
@@ -62,9 +71,9 @@ namespace Aura.Channel.Skills.Magic
 			if (!target.Conditions.Has(ConditionsA.ManaShield))
 				return;
 
-			// Get Mana Shield skill to get the rank's vars
-			var manaShield = target.Skills.Get(SkillId.ManaShield);
-			if (manaShield == null) // Checks for things that should never ever happen, yay.
+			/* Get Soul of Chaos skill to get the rank's vars [I DON'T THINK WE NEED THIS]
+			var dkRank = target.Skills.Get(SkillId.SoulOfChaos);
+			if (dkRank == null) // Checks for things that should never ever happen, yay.
 				return;
 
 			// Var 1 = Efficiency
@@ -80,13 +89,11 @@ namespace Aura.Channel.Skills.Magic
 				// damage from life if the mana is not enough.
 				damage -= (manaDamage - target.Mana) * manaShield.RankData.Var1;
 				manaDamage = target.Mana;
-			}
+			} */
 
-			// Reduce mana
-			target.Mana -= manaDamage;
-
-			if (target.Mana <= 0)
-				ChannelServer.Instance.SkillManager.GetHandler<StartStopSkillHandler>(SkillId.ManaShield).Stop(target, manaShield);
+			// while experiencing DK Disarm
+			if (target.Life <= 0)
+				ChannelServer.Instance.SkillManager.GetHandler<StartStopSkillHandler>(SkillId.ManaShield).Stop(target, dkRank);
 
 			tAction.ManaDamage = manaDamage;
 		}
