@@ -336,7 +336,7 @@ public class TaraSealStoneScript : SealStoneScript
 
 public abstract class SealStoneScript : GeneralScript
 {
-	protected const bool AllowMultiple = false;
+	protected const bool AllowMultiple = true;
 
 	protected string _name, _ident;
 	protected int _region, _x, _y;
