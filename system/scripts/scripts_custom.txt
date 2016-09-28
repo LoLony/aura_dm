@@ -10,5 +10,6 @@
 //custom/telephant.cs
 //custom/oriental_town.cs
 //custom/points_shop.cs
+//items/good_luck_potion.cs
 
 include "/user/scripts/scripts_custom.txt"
