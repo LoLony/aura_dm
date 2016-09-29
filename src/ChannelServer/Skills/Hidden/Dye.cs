@@ -154,11 +154,11 @@ namespace Aura.Channel.Skills.Hidden
 			switch (rnd.Next(5))
 			{
 				default:
-				case 0: picker = creature.Temp.RegularDyePickers.Picker1; break;
-				case 1: picker = creature.Temp.RegularDyePickers.Picker2; break;
-				case 2: picker = creature.Temp.RegularDyePickers.Picker3; break;
-				case 3: picker = creature.Temp.RegularDyePickers.Picker4; break;
-				case 4: picker = creature.Temp.RegularDyePickers.Picker5; break;
+				case 0: picker = creature.Temp.RegularDyePickers.Picker1; Send.ServerMessage(creature, Localization.Get("Item successfully dyed in color #1!")); break;
+				case 1: picker = creature.Temp.RegularDyePickers.Picker2; Send.ServerMessage(creature, Localization.Get("Item successfully dyed in color #2!")); break;
+				case 2: picker = creature.Temp.RegularDyePickers.Picker3; Send.ServerMessage(creature, Localization.Get("Item successfully dyed in color #3!")); break;
+				case 3: picker = creature.Temp.RegularDyePickers.Picker4; Send.ServerMessage(creature, Localization.Get("Item successfully dyed in color #4!")); break;
+				case 4: picker = creature.Temp.RegularDyePickers.Picker5; Send.ServerMessage(creature, Localization.Get("Item successfully dyed in color #5!")); break;
 			}
 
 			// Apply picker offset

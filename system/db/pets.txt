@@ -5,6 +5,8 @@
 //---------------------------------------------------------------------------
 
 [
+// Custom (by me)
+{ raceId: 20020, name: "Sheep Wolf", timeLimit: 120, exp: 1.7, height: 0.6, upper: 1.3, lower: 1.4, life: 52, mana: 28, stamina: 45, str: 36, int: 17, dex: 20, will: 23, luck: 17, defense: 0, protection: 2, color2: 0x007D766A, color3: 0x005E6A4F },
 // Normal
 //---------------------------------------------------------------------------
 { raceId: 200001, name: "Yellow Jindo", timeLimit: 116, exp: 1.5, height: 0.5, upper: 1.4, lower: 1.4, life: 48, mana: 37, stamina: 40, str: 21, int: 16, dex: 22, will: 26, luck: 24, defense: 0, protection: 2, color1: 0x00B08048, color3: 0x00A0A0A0 },

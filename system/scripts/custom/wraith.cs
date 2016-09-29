@@ -14,14 +14,21 @@ public class WraithScript : NpcScript
         SetName("Arabraxos");
         SetBody(height: 1.51f);
         SetColor(0x00202020, 0x00202020, 0x00202020);
-        SetLocation(1, 16128, 38844, 219);
+        SetStand("human/anim/tool/tequip_c/uni_tool_tequip_c21_stand_offensive");
+        SetLocation(1, 16000, 39000, 219);
 
-        EquipItem(Pocket.Head, 18661, 0x00202020, 0x00202020, 0x00202020);
+        /* EquipItem(Pocket.Head, 18661, 0x00202020, 0x00202020, 0x00202020);
         EquipItem(Pocket.Armor, 13006, 0x00202020, 0x00202020, 0x00202020);
         EquipItem(Pocket.Glove, 16502, 0x00202020, 0x00202020, 0x00202020);
         EquipItem(Pocket.Shoe, 17505, 0x00202020, 0x00202020, 0x00202020);
         EquipItem(Pocket.RightHand1, 40083, 0x00353535, 0x0054524D, 0x0054524D);
-        EquipItem(Pocket.LeftHand1, 46006, 0x00202020, 0x00202020, 0x00202020);
+        EquipItem(Pocket.LeftHand1, 46006, 0x00202020, 0x00202020, 0x00202020); */ // old
+
+        EquipItem(Pocket.Armor, 13043, 0x009FA3A7, 0x00808080, 0x00808080);
+        EquipItem(Pocket.Glove, 16529, 0x003D3C3A, 0x00808080, 0x00808080);
+        EquipItem(Pocket.Shoe, 17514, 0x003B3838, 0x005A5A5A, 0x00867B7D);
+        EquipItem(Pocket.Head, 18520, 0x00383634, 0x00B3A6A4, 0x00416DAF);
+        EquipItem(Pocket.RightHand1, 40241, 0x00B7B7B7, 0x00CCCCCC, 0x00242320);
 
 		AddPhrase("Ahh...");
 		AddPhrase("......");
@@ -81,7 +88,7 @@ public class WraithScript : NpcScript
 			"The armor seems to be moving on its own. A deep voice bellows out from within..."
 		);
 
-		Msg("Greetings, wayward Milletian.", Button("Start a Conversation", "@talk"), Button("Shop", "@shop"), Button("Repair Item", "@repair"));
+		Msg("Greetings, wayward Milletian...", Button("Start a Conversation", "@talk"), Button("Shop", "@shop"), Button("Repair Item", "@repair"));
 
 		switch (await Select())
 		{
