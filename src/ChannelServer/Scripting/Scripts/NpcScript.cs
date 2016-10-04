@@ -469,7 +469,7 @@ namespace Aura.Channel.Scripting.Scripts
 					moodStr = this.Rnd(
 						Localization.Get("(<npcname/> is looking at me.)"),
 						Localization.Get("(<npcname/> is looking in my direction.)"),
-						Localization.Get("(<npcname/> is waiting for me to says something.)"),
+						Localization.Get("(<npcname/> is waiting for me to say something.)"),
 						Localization.Get("(<npcname/> is paying attention to me.)")
 					);
 					break;

@@ -73,6 +73,9 @@ npcs/gairech/seumas_part_timer.cs
 npcs/sidhe/tarlach.cs
 npcs/sidhe/tarlach_bear.cs
 
+npcs/sen_mag/fleta.cs
+npcs/sen_mag/rab.cs
+
 custom/patrons/trigger.cs
 custom/patrons/pegwald.cs
 
