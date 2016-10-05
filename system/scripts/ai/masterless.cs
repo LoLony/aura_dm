@@ -12,6 +12,9 @@ public class MasterlessAi : AiScript
 		SetVisualField(1200, 800);
 		SetAggroRadius(2000);
 
+		AddSkill(SkillId.CombatMastery, SkillRank.R1);
+		AddSkill(SkillId.Lightningbolt, SkillRank.R1);
+
 		Hates("/pc/", "/pet/");
 
 		On(AiState.Aggro, AiEvent.Hit, OnHit);
