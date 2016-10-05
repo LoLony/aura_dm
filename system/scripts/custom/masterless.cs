@@ -1,44 +1,30 @@
-SetRace(190105);
-SetName("Wooden Man");
-SetBody(height: 1.41f);
-SetFace(skinColor: 169, eyeType: 0, eyeColor: 244, mouthType: 0);
-SetLocation(35005, 8582, 9101, 7);
-
-EquipItem(Pocket.RightHand1, 40019, 0x007F7237, 0x0004B600, 0x007D8310);
-EquipItem(Pocket.LeftHand1, 46001, 0x00997272, 0x007F7237, 0x00E49856);
-
 //--- Aura Script -----------------------------------------------------------
 // Wooden Man
 //--- Description -----------------------------------------------------------
 // A training dummy with a few nice things to sell
 //---------------------------------------------------------------------------
 
-public class WoodManScript : NpcScript
+public class MasterlessScript : NpcScript
 {
 	public override void Load()
 	{
-		SetRace(190105);
-		SetName("Wooden Man");
-		SetBody(height: 1.41f);
-		SetFace(skinColor: 169, eyeType: 0, eyeColor: 244, mouthType: 0);
-		SetLocation(35005, 8582, 9101, 7);
-		SetLocation(1, 18075, 29960, 80);
-		SetGiftWeights(beauty: 0, individuality: 0, luxury: 0, toughness: 1, utility: 1, rarity: 2, meaning: 2, adult: 0, maniac: 0, anime: -1, sexy: 0);
+		SetRace(10002);
+		SetName("Masterless");
+		SetFace(skinColor: 21, eyeType: 190, eyeColor: 176, mouthType: 2);
+		SetLocation(27, 3206, 4351, 0);
 
-		EquipItem(Pocket.RightHand1, 40019, 0x007F7237, 0x0004B600, 0x007D8310);
-		EquipItem(Pocket.LeftHand1, 46001, 0x00997272, 0x007F7237, 0x00E49856);
+		EquipItem(Pocket.Face, 4909, 0x00000015, 0x00000000, 0x00000000);
+		EquipItem(Pocket.Hair, 4158, 0x10000008, 0x00000000, 0x00000000);
+		EquipItem(Pocket.Armor, 210009, 0x00A58E74, 0x00A58E74, 0x00000000);
+		EquipItem(Pocket.Glove, 16537, 0x00A58E74, 0x00000000, 0x00000000);
+		EquipItem(Pocket.Shoe, 17510, 0x00A58E74, 0x00000000, 0x00000000);
+		EquipItem(Pocket.Head, 18518, 0x00A58E74, 0x00000000, 0x00000000);
+		EquipItem(Pocket.RightHand1, 40907, 0x00A58E74, 0x00A58E74, 0x00000000);
+
 
 		AddPhrase("(Spits out a loogie)");
 		AddPhrase("Beard! Oh, beard! A true man never forgets how to grow a beard, yeah!");
 		AddPhrase("How come they are so late? I've been expecting armor customers for hours now.");
-		AddPhrase("Hrrrm");
-		AddPhrase("I am running out of Iron Ore. I guess I should wait for more.");
-		AddPhrase("I feel like working while singing songs.");
-		AddPhrase("I probably did too much hammering yesterday. Now my arm is sore.");
-		AddPhrase("I really need a pair of bellows... The sooner the better.");
-		AddPhrase("Ouch, I yawned too big. I nearly ripped my mouth open!");
-		AddPhrase("Scratching");
-		AddPhrase("What am I going to make today?");
 	}
 
 	protected override async Task Talk()
