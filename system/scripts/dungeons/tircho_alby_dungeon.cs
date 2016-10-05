@@ -108,6 +108,12 @@ public class AlbyDungeonScript : DungeonScript
 			return true;
 		}
 
+		if (item.Info.Id == 57007 && (creature.Party.Leader.Quests.Has(333333)||creature.Party.Leader.Quests.Has(333334))) // Small Silver Gem with Battle for Light/Darkness quest
+		{
+			dungeonName = "tircho_alby_trans_dungeon";
+			return true;
+		}
+
 		// Fall back for unknown passes
 		if (item.IsDungeonPass)
 		{

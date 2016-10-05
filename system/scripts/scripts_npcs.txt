@@ -80,6 +80,6 @@ custom/patrons/trigger.cs
 custom/patrons/pegwald.cs
 
 custom/throk.cs
-custom/wraith.cs
+custom/masterless.cs
 
 include "/user/scripts/scripts_npcs.txt"

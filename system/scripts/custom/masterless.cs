@@ -1,7 +1,7 @@
 //--- Aura Script -----------------------------------------------------------
-// Wooden Man
+// Masterless
 //--- Description -----------------------------------------------------------
-// A training dummy with a few nice things to sell
+// A man who gave it all up for power. He can teach you to become a Paladin.
 //---------------------------------------------------------------------------
 
 public class MasterlessScript : NpcScript
@@ -11,7 +11,7 @@ public class MasterlessScript : NpcScript
 		SetRace(10002);
 		SetName("Masterless");
 		SetFace(skinColor: 21, eyeType: 190, eyeColor: 176, mouthType: 2);
-		SetLocation(27, 3206, 4351, 0);
+		SetLocation(27, 3206, 4351, 60);
 
 		EquipItem(Pocket.Face, 4909, 0x00000015, 0x00000000, 0x00000000);
 		EquipItem(Pocket.Hair, 4158, 0x10000008, 0x00000000, 0x00000000);
@@ -22,16 +22,16 @@ public class MasterlessScript : NpcScript
 		EquipItem(Pocket.RightHand1, 40907, 0x00A58E74, 0x00A58E74, 0x00000000);
 
 
-		AddPhrase("(Spits out a loogie)");
-		AddPhrase("Beard! Oh, beard! A true man never forgets how to grow a beard, yeah!");
-		AddPhrase("How come they are so late? I've been expecting armor customers for hours now.");
+		AddPhrase("This place isn't safe, you know.");
+		AddPhrase("You should think twice about entering Albey Dungeon.");
+		AddPhrase("You dare challenge me?!");
 	}
 
 	protected override async Task Talk()
 	{
-		await Intro(L("His bronze complexion shines with the glow of vitality. His distinctive facial outline ends with a strong jaw line covered with dark beard.<br/>The first impression clearly shows he is a seasoned blacksmith with years of experience.<br/>The wide-shouldered man keeps humming with a deep voice while his muscular torso swings gently to the rhythm of the tune."));
+		await Intro(L("A golden knight stands before you, his gaze fixed upon the stone mural.<br/>After a second, he turns to you, and his voice bellows out from the armor."));
 
-		Msg("Welcome to my Blacksmith's Shop.", Button("Start a Conversation", "@talk"), Button("Shop", "@shop"), Button("Repair Item", "@repair"), Button("Modify Item", "@upgrade"));
+		Msg("Greetings, wayward one...", Button("Start a Conversation", "@talk"), Button("Shop", "@shop"), Button("Duel", "@duel"));
 
 		switch (await Select())
 		{
@@ -39,122 +39,77 @@ public class MasterlessScript : NpcScript
 				Greet();
 				Msg(Hide.Name, GetMoodString(), FavorExpression());
 
-				if (Title == 11001)
-				{
-					Msg("...Hmm... Such a boast should be made in front of Priest Meven.<br/>If you'd like, I'll tell you one more thing.");
-					Msg("There's no need to seek out any Goddesses.<br/>Your mother is the true Goddess.");
-					Msg("...Be a good child and honor your mother.");
-				}
-				else if (Title == 11002)
-				{
-					Msg("Hm... <username/>, the Guardian of Erinn?<br/>If you want, I could guard your weapons.");
-					Msg("...If you have any weapons that<br/>have become dull, I'll take care of it...");
-				}
-
 				await Conversation();
 				break;
 
 			case "@shop":
-				Msg("Looking for a weapon?<br/>Or armor?");
-				OpenShop("FerghusShop");
+				Msg("All I sell are these potions used to further your abilities...<br/>They are quite pricey- such power doesn't come free, after all...");
+				OpenShop("MasterlessShop");
 				return;
 
-			case "@repair":
-				Msg("If you want to have armor, kits or weapons repaired, you've come to the right place.<br/>I sometimes make mistakes, but I offer the best deal for repair work.<br/>For rare and expensive items, I think you should go to a big city. I can't guarantee anything.<br/><repair rate='90' stringid='(*/smith_repairable/*)' />");
-
-				while (true)
-				{
-					var repair = await Select();
-
-					if (!repair.StartsWith("@repair"))
-						break;
-
-					var result = Repair(repair, 90, "/smith_repairable/");
-					if (!result.HadGold)
-					{
-						RndMsg(
-							"Haha. You don't have enough Gold to repair that.",
-							"Well, you have to bring more money to have it fixed.",
-							"Do you have the Gold?"
-						);
-					}
-					else if (result.Points == 1)
-					{
-						if (result.Fails == 0)
-							RndMsg(
-								"Alright! 1 Point repaired!",
-								"Durability rose 1 point.",
-								"Finished 1 point repair."
-							);
-						else
-							Msg("Hmm... The repair didn't go well. Sorry..."); // Should be 3
-					}
-					else if (result.Points > 1)
-					{
-						if (result.Fails == 0)
-							RndMsg(
-								"Alright! It's perfectly repaired.",
-								"Here, full repair is done.",
-								"It's repaired perfectly."
-							);
-						else
-							// TODO: Use string format once we have XML dialogues.
-							Msg("Repair is over.<br/>Unfortunately, I made " + result.Fails + " mistake(s).<br/>Only " + result.Successes + " point(s) got repaired.");
-					}
+			case "@duel":
+				Msg("So, you would like to duel me, eh?<br/>I tell you what... for 100 coins, I'll duel you, and if you win, I'll teach you the mystical art of transformation.<br/>You'll need Red Coins for the powers of darkness, and Blue Coins for the power of light.<br/>What do you say, <username/>? Do we have a deal?", Button("Yes", "@yes"), Button("No", "@no"));
+				switch (await Select()) {
+					case "@yes":
+						Msg("Very well then... what will you choose?<br/>The powers of darkness, or the powers of light?", Button("Light", "@light"), Button("Darkness", "@dark"));
+						switch (await Select()) {
+							case "@dark":
+								if (HasItem(52033, 100) && !HasQuest(333333)) // 100 Red Coins and not running the Paladin Quest
+								{
+									RemoveItem(52033, 100);
+									StartQuest(333334);	//Battle for Darkness quest
+									Msg("Very well, child of darkness... I look forward to our duel.<br/>Meet me in Alby Dungeon... drop a Silver Gem on the altar to find me.");
+								}
+								else
+								{
+									Msg("Alas... you don't have enough coins.<br/>Come back to me again when you have 100 Red Coins...");
+								}
+								return;
+							case "@light":
+								if (HasItem(52032, 100) && !HasQuest(333334)) // 100 Blue Coins and not running the Dark Knight Quest
+								{
+									RemoveItem(52032, 100);
+									StartQuest(333333);	//Battle for Light quest
+									Msg("Very well, child of light... I look forward to our duel.<br/>Meet me in Alby Dungeon... drop a Silver Gem on the altar to find me.");
+								}
+								else
+								{
+									Msg("Alas... you don't have enough coins.<br/>Come back to me again when you have 100 Blue Coins...");
+								}
+								return;
+						}
+						return;
+					case "@no":
+						Msg("That's too bad... it would have been quite the battle, hahaha.<br/>Do come back if you change your mind, though. I look forward to it...");
+						return;
 				}
-
-				Msg("<repair hide='true'/>By the way, do you know you can bless your items with the Holy Water of Lymilark?<br/>I don't know why but I make fewer mistakes<br/>while repairing blessed items. Haha.");
-				Msg("Well, come again when you have items to fix.");
-				break;
-
-			case "@upgrade":
-				Msg("Will you select items to be modified?<br/>The number and types of modifications are different depending on the items.<br/>When I modify them, my hands never slip or make mistakes. So don't worry. Trust me.<upgrade />");
-
-				while (true)
-				{
-					var reply = await Select();
-
-					if (!reply.StartsWith("@upgrade:"))
-						break;
-
-					var result = Upgrade(reply);
-					if (result.Success)
-						Msg("The modification you've asked for has been done.<br/>Is there anything you want to modify?");
-					else
-						Msg("(Error)");
-				}
-				Msg("If you have something to modify, let me know anytime.<upgrade hide='true'/>");
 				break;
 		}
 
-		End("Goodbye, <npcname/>. I'll see you later!");
+		End("Goodbye, <npcname/>.");
 	}
 
 	private void Greet()
 	{
-		if (DoingPtjForNpc())
+		if (Memory <= 0)
 		{
-			Msg(FavorExpression(), L("Hey, part-timer!<br/>You're not just lounging around, are you? Haha."));
-		}
-		else if (Memory <= 0)
-		{
-			Msg(FavorExpression(), L("Are you new here? Good to see you."));
+			Msg(FavorExpression(), L("I don't believe we've met before...<br/>I am... Masterless."));
 		}
 		else if (Memory == 1)
 		{
-			Msg(FavorExpression(), L("Have we met? You look familiar to me."));
+			Msg(FavorExpression(), L("Greetings once again, <username/>. What brings you back here?"));
 		}
 		else if (Memory == 2)
 		{
-			Msg(FavorExpression(), L("What's up, <username/>?<br/>You are <username/>, right?"));
+			Msg(FavorExpression(), L("Ah, <username/>. I am glad you've survived this long."));
 		}
 		else if (Memory <= 6)
 		{
-			Msg(FavorExpression(), L("Good to see you, <username/>."));
+			Msg(FavorExpression(), L("I am glad you've returned, <username/>. Where have your travels taken you?"));
 		}
 		else
 		{
-			Msg(FavorExpression(), L("Hey, regular! My dear good ol' customer!"));
+			Msg(FavorExpression(), L("It has been a long time, <username/>. I'm glad you're well."));
 		}
 
 		UpdateRelationAfterGreet();
@@ -164,7 +119,7 @@ public class MasterlessScript : NpcScript
 	{
 		switch (keyword)
 		{
-			case "personal_info":
+			/* case "personal_info":
 				GiveKeyword("shop_smith");
 				Msg(FavorExpression(), "I'm the blacksmith of Tir Chonaill. We'll see each other often, <username/>.");
 				ModifyRelation(Random(2), 0, Random(3));
@@ -382,14 +337,13 @@ public class MasterlessScript : NpcScript
 				GiveKeyword("shop_misc");
 				Msg("If you are looking for Music Scores, you came too far down.<br/>Malcolm's General Shop is near the Square.<br/>Looks like someone wasted their time, haha.");
 				break;
-
+			*/
 			default:
 				RndMsg(
-					"?",
-					"*Yawn* I don't know.",
-					"Haha. I have no idea.",
-					"That's not my concern.",
-					"I don't know, man. That's just out of my league."
+					"I don't see why I should concern myself with such frivelous things.",
+					"It matters not to me.",
+					"What makes you think I care about this?",
+					"I've never heard anything of this across all my travels."
 				);
 				ModifyRelation(0, 0, Random(3));
 				break;
@@ -397,63 +351,11 @@ public class MasterlessScript : NpcScript
 	}
 }
 
-public class FerghusShop : NpcShopScript
+public class MasterlessShop : NpcShopScript
 {
 	public override void Setup()
 	{
-		Add("Weapon", 40003);      // Short Bow
-		Add("Weapon", 40005);      // Short Sword
-		Add("Weapon", 40006);      // Dagger
-		Add("Weapon", 40007);      // Hatchet
-		Add("Weapon", 40022);      // Gathering Axe
-		Add("Weapon", 40023);      // Gathering Knife
-		Add("Weapon", 40024);      // Blacksmith Hammer
-		Add("Weapon", 40025);      // Pickaxe
-		Add("Weapon", 40026);      // Sickle
-		Add("Weapon", 40027);      // Weeding Hoe
-		Add("Weapon", 45001, 100); // Arrow x100
-		Add("Weapon", 45001, 20);  // Arrow x20
-		Add("Weapon", 45002, 50);  // Bolt x50
-		Add("Weapon", 45002, 200); // Bolt x200
-		Add("Weapon", 46001);      // Round Shield
-
-		Add("Shoes && Gloves", 16000); // Leather Gloves
-		Add("Shoes && Gloves", 16004); // Studded Bracelet
-		Add("Shoes && Gloves", 16008); // Cores' Thief Gloves
-		Add("Shoes && Gloves", 16014); // Lorica Gloves
-		Add("Shoes && Gloves", 17001); // Ladies Leather Boots
-		Add("Shoes && Gloves", 17005); // Hunter Boots
-		Add("Shoes && Gloves", 17014); // Leather Shoes
-		Add("Shoes && Gloves", 17015); // Combat Shoes
-		Add("Shoes && Gloves", 17016); // Field Combat Shoes
-		Add("Shoes && Gloves", 17020); // Thief Shoes
-		Add("Shoes && Gloves", 17021); // Lorica Sandals
-
-		Add("Helmet", 18503); // Cuirassier Helm
-
-		Add("Armor", 14001); // Light Leather Mail (F)
-		Add("Armor", 14003); // Studded Cuirassier
-		Add("Armor", 14004); // Cloth Mail
-		Add("Armor", 14008); // Full Leather Armor Set
-		Add("Armor", 14010); // Light Leather Mail (M)
-
-		Add("Event");
-
-		if (IsEnabled("FighterJob"))
-		{
-			Add("Weapon", 40179); // Spiked Knuckle
-			Add("Weapon", 40180); // Hobnail Knuckle
-			Add("Weapon", 40244); // Bear Knuckle
-		}
-
-		if (IsEnabled("PuppetMasterJob"))
-		{
-			Add("Weapon", 40745); // Basic Control Bar
-		}
-
-		if (IsEnabled("Ninjajob"))
-		{
-			Add("Weapon", 40841); // Spiral Shuriken
-		}
+		Add("Training Potion", 91219, 1, 250000);      // Spirit of Order Training Potion
+		Add("Training Potion", 91220, 1, 250000);      // Soul of Chaos Training Potion
 	}
 }
