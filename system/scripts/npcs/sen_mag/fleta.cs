@@ -1,7 +1,7 @@
 //--- Aura Script -----------------------------------------------------------
 // Fleta
 //--- Description -----------------------------------------------------------
-// The wayward girl in Sen Mag Plateu
+// The wayward merchant girl in Sen Mag Plateu
 //---------------------------------------------------------------------------
 
 public class FletaScript : NpcScript
@@ -12,7 +12,9 @@ public class FletaScript : NpcScript
 		SetName("_fleta");
 		SetBody(height: 0.1f, weight: 1.06f, upper: 1.09f);
 		SetFace(skinColor: 15, eyeType: 8, eyeColor: 155, mouthType: 2);
-		SetLocation(53, 103127, 112005, 18);
+		int startPlusX = Random(0,4000);
+        int startPlusY = Random(0,4000);
+		SetLocation(53, 102000+startPlusX, 106000+startPlusY, 0);
 
 		//normal gear
 
@@ -40,8 +42,8 @@ public class FletaScript : NpcScript
     {
         if (time.Minute == 0 && (time.Hour == 9 | time.Hour == 15 | time.Hour == 19)) // Warp in
         {
-        	int plusX = Convert.ToInt32(Random(0,4000) % 100);
-        	int plusY = Convert.ToInt32(Random(0,4000) % 100);
+        	int plusX = Random(0,4000);
+        	int plusY = Random(0,4000);
         	NPC.WarpFlash(53, 102000 + plusX, 106000 + plusY);
         }
         else if (time.Minute == 0 && (time.Hour == 11 | time.Hour == 17 | time.Hour == 21)) // Warp out

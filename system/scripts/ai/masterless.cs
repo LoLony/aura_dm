@@ -4,10 +4,10 @@
 // AI for all Dark Lords. Everything seems to be the same between them.
 //---------------------------------------------------------------------------
 
-[AiScript("masterless")]
-public class MasterlessAi : AiScript
+[AiScript("mless_pl")]
+public class MasterlessPaladinAi : AiScript
 {
-	public MasterlessAi()
+	public MasterlessPaladinAi()
 	{
 		SetVisualField(1200, 800);
 		SetAggroRadius(2000);

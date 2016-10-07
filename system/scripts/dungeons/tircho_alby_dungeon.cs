@@ -108,10 +108,32 @@ public class AlbyDungeonScript : DungeonScript
 			return true;
 		}
 
-		if (item.Info.Id == 57007 && (creature.Party.Leader.Quests.Has(333333)||creature.Party.Leader.Quests.Has(333334))) // Small Silver Gem with Battle for Light/Darkness quest
+		if (item.Info.Id == 57007 && (creature.Party.Leader.Quests.Has(333333))) // Small Silver Gem with Battle for Light quest
 		{
-			dungeonName = "tircho_alby_trans_dungeon";
-			return true;
+			if (creature.Party.MemberCount != 1)
+			{
+				Send.Notice(creature, L("You must fight Masterless alone."));
+				return false;
+			}
+			else
+			{
+				dungeonName = "tircho_alby_trans1_dungeon";
+				return true;
+			}
+			
+		}
+		else if (item.Info.Id == 57007 && (creature.Party.Leader.Quests.Has(333334))) // Small Silver Gem with Battle for Darkness quest
+		{
+			if (creature.Party.MemberCount != 1)
+			{
+				Send.Notice(creature, L("You must fight Masterless alone."));
+				return false;
+			}
+			else
+			{
+				dungeonName = "tircho_alby_trans2_dungeon";
+				return true;
+			}
 		}
 
 		// Fall back for unknown passes
