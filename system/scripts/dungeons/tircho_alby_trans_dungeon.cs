@@ -69,6 +69,8 @@ public class AlbyTrans1DungeonScript : DungeonScript
 	}
 }
 
+/* 
+
 public class AlbyTrans2DungeonScript : DungeonScript
 {
 	public override void OnBoss(Dungeon dungeon)
@@ -132,3 +134,5 @@ public class AlbyTrans2DungeonScript : DungeonScript
 		return Item.GetRandomDrop(rnd, drops);
 	}
 }
+
+*/
