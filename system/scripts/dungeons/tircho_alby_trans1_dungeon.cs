@@ -4,7 +4,7 @@
 // Script for Alby Basic.
 //---------------------------------------------------------------------------
 
-[DungeonScript("tircho_alby_trans_dungeon")]
+[DungeonScript("tircho_alby_trans1_dungeon")]
 public class AlbyTrans1DungeonScript : DungeonScript
 {
 	public override void OnBoss(Dungeon dungeon)
@@ -76,6 +76,9 @@ public class AlbyTrans2DungeonScript : DungeonScript
 	public override void OnBoss(Dungeon dungeon)
 	{
 		dungeon.AddBoss(30004, 1); // Masterless Darkfighter
+=======
+		dungeon.AddBoss(800000, 1); // Masterless Lightshedder
+>>>>>>> 99591d3a949b6c8e99b63046d7e16d39d6c7d538:system/scripts/dungeons/tircho_alby_trans1_dungeon.cs
 	}
 
 	public override void OnCleared(Dungeon dungeon)

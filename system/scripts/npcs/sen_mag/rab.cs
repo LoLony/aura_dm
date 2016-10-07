@@ -1,7 +1,7 @@
 //--- Aura Script -----------------------------------------------------------
 // Fleta's Rab
 //--- Description -----------------------------------------------------------
-// The canine companion of the lost girl
+// The canine companion of the wandering merchant girl
 //---------------------------------------------------------------------------
 
 public class RabScript : NpcScript
@@ -12,7 +12,9 @@ public class RabScript : NpcScript
 		SetName("_rab");
 		SetBody(height: 0.9f);
 		SetColor(0x00000000, 0x00404040, 0x00C0C0C0);
-		SetLocation(53, 102918, 108990, 0);
+        int startPlusX = Random(0,4000);
+        int startPlusY = Random(0,4000);
+		SetLocation(53, 102000+startPlusX, 106000+startPlusY, 0);
 
 		AddPhrase("Ruff");
 		AddPhrase("Ruff, ruff");
@@ -26,8 +28,8 @@ public class RabScript : NpcScript
     {
         if (time.Minute == 0 && (time.Hour == 9 | time.Hour == 15 | time.Hour == 19)) // Warp in
         {
-        	int plusX = Convert.ToInt32(Random(0,4000) % 100);
-        	int plusY = Convert.ToInt32(Random(0,4000) % 100);
+        	int plusX = Random(0,4000);
+            int plusY = Random(0,4000);
         	NPC.WarpFlash(53, 102000 + plusX, 106000 + plusY);
         }
         else if (time.Minute == 0 && (time.Hour == 11 | time.Hour == 17 | time.Hour == 21)) // Warp out

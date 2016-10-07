@@ -21,7 +21,6 @@ public class MasterlessScript : NpcScript
 		EquipItem(Pocket.Head, 18518, 0x00A58E74, 0x00000000, 0x00000000);
 		EquipItem(Pocket.RightHand1, 40907, 0x00A58E74, 0x00A58E74, 0x00000000);
 
-
 		AddPhrase("This place isn't safe, you know.");
 		AddPhrase("You should think twice about entering Albey Dungeon.");
 		AddPhrase("You dare challenge me?!");
