@@ -474,6 +474,23 @@ namespace Aura.Channel.Network.Handlers
 			Send.ItemStateChangeR(creature);
 		}
 
+        /// <summary>
+		/// Sent when using an item. (Quality/feature unknown)
+		/// </summary>
+		/// <remarks>
+		/// THIS IS NOT GOOD PROGRAMMING.
+        /// THIS WILL LIKELY NOT WORK FOR ALL CASES.
+        /// IT HAS BEEN IMPLEMENTED AS A WORKAROUND FOR ITEMID 91038 (ORDINARY CHEST).
+        /// ITEM 91039 (PREMIUM CHEST) DOES NOT HAVE TO RESPOND WITH THIS OP.
+        /// MORE RESEARCH IS NEEDED TO DETERMINE THE ACTUAL FUNCTION OF THIS PACKET.
+        /// PLEASE SUBMIT PULL REQUESTS WITH IMPROVEMENTS OR HANDLERS FOR ITEMS THAT DO NOT WORK WITH THIS PACKET TRANSLATION.
+		/// </remarks>
+        [PacketHandler(Op.OpenEventChest)]
+        public void UseEventChest(ChannelClient client, Packet packet)
+        {
+            UseItem(client, packet);
+        }
+
 		/// <summary>
 		/// Sent when using an item.
 		/// </summary>

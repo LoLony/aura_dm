@@ -581,8 +581,9 @@ namespace Aura.Mabi.Network
 		public const int OpenItemShop = 0xA44D;
 		public const int OpenItemShopR = 0xA44E;
 
-		// [150000~180000] Something was removed here
+        // [150000~180000] Something was removed here
 
+        public const int OpenEventChest = 0xA803;   // indev
 		public const int MailsRequest = 0xA897;
 		public const int MailsRequestR = 0xA898;
 		public const int SetPetAi = 0xA8A1;
