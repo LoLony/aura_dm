@@ -13,9 +13,9 @@ public class Chest1Rewards : ItemScript
 				list = new List<DropData>();
 				list.Add(new DropData(itemId: 52033, chance: 10, amountMin: 1, amountMax: 3)); 	// Red Coin
 				list.Add(new DropData(itemId: 52032, chance: 10, amountMin: 1, amountMax: 3)); 	// Blue Coin
-				list.Add(new DropData(itemId: 40907, chance: 5)); 	// Dark Knight Two-handed Sword
-				list.Add(new DropData(itemId: 40274, chance: 5)); 	// Taillteann Two-handed Sword
-				list.Add(new DropData(itemId: 40030, chance: 5)); 	// Two-handed Sword
+				//list.Add(new DropData(itemId: 40907, chance: 5)); 	// Dark Knight Two-handed Sword
+				//list.Add(new DropData(itemId: 40274, chance: 5)); 	// Taillteann Two-handed Sword
+				//list.Add(new DropData(itemId: 40030, chance: 5)); 	// Two-handed Sword
 				list.Add(new DropData(itemId: 63255, chance: 20)); 	// Fixed Metal Dye Ampoule
 				list.Add(new DropData(itemId: 91138, chance: 20)); 	// Fixed Color Dye Ampoule
 
