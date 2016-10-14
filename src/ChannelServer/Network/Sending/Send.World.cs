@@ -9,6 +9,7 @@ using Aura.Shared.Network;
 using Aura.Shared.Util;
 using Aura.Channel.Network.Sending.Helpers;
 using Aura.Mabi.Network;
+using System;
 
 namespace Aura.Channel.Network.Sending
 {
@@ -32,11 +33,11 @@ namespace Aura.Channel.Network.Sending
 			entity.Region.Broadcast(packet, entity, false);
 		}
 
-		/// <summary>
-		/// Broadcasts EntityDisappears|ItemDisappears in entity's region.
-		/// </summary>
-		/// <param name="entity"></param>
-		public static void EntityDisappears(Entity entity)
+        /// <summary>
+        /// Broadcasts EntityDisappears|ItemDisappears in entity's region.
+        /// </summary>
+        /// <param name="entity"></param>
+        public static void EntityDisappears(Entity entity)
 		{
 			var op = Op.EntityDisappears;
 			if (entity is Item)
