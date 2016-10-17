@@ -123,7 +123,7 @@ public class TreasureChestScript : GeneralScript
 	[On("PlayerLoggedIn")]
 	public void OnPlayerLoggedIn(Creature creature)
 	{
-		Send.Notice(creature, NoticeType.TopGreen, "The Treasure Chest Aura is currently in effect. REVISION 1 10/13/16: lowered drop rates for chests. Implemented DEBUG messages. New items to come.");
+		Send.Notice(creature, NoticeType.TopGreen, "The Treasure Chest Aura is currently in effect. REVISION 1 10/14/16: lowered drop rates for chests further. Removeded DEBUG messages. Removed most items. New items to come.");
 		// these don't seem to appear, rescript?
 	}
 
@@ -136,30 +136,26 @@ public class TreasureChestScript : GeneralScript
 			var pos = creature.GetPosition();
 			var keyVar = rnd.NextDouble();
 			var chestVar = rnd.NextDouble();
-			if (keyVar * 100 < 1 * ChannelServer.Instance.Conf.World.DropRate)
+			if (keyVar * 100 < 0.5 * ChannelServer.Instance.Conf.World.DropRate)
 			{
-				Send.SystemMessage(killer, Localization.Get("[DEBUG] Premium Key get! RNG: " + (int)(keyVar * 100) + ", aka " + keyVar + "/1"));
 				var eventDropPos = pos.GetRandomInRange(50, rnd);
 				var eventItem = new Item(70156);							// Premium Chest Key
 				eventItem.Drop(creature.Region, eventDropPos, Item.DropRadius, killer, true);
 			}
-			else if (keyVar * 100 < 5 * ChannelServer.Instance.Conf.World.DropRate)
+			else if (keyVar * 100 < 2 * ChannelServer.Instance.Conf.World.DropRate)
 			{
-				Send.SystemMessage(killer, Localization.Get("[DEBUG] Ordinary Key get! RNG: " + (int)(keyVar * 100) + ", aka " + keyVar + "/5"));
 				var eventDropPos = pos.GetRandomInRange(50, rnd);
 				var eventItem = new Item(70155);							// Ordinary Chest Key
 				eventItem.Drop(creature.Region, eventDropPos, Item.DropRadius, killer, true);
 			}
-			if (chestVar * 100 < 0.5 * ChannelServer.Instance.Conf.World.DropRate)
+			if (chestVar * 100 < 0.25 * ChannelServer.Instance.Conf.World.DropRate)
 			{
-				Send.SystemMessage(killer, Localization.Get("[DEBUG] Premium Chest get! RNG: " + (int)(chestVar * 100) + ", aka " + chestVar + "/0.5"));
 				var eventDropPos = pos.GetRandomInRange(50, rnd);
 				var eventItem = new Item(91039);							// Premium Chest
 				eventItem.Drop(creature.Region, eventDropPos, Item.DropRadius, killer, true);
 			}
-			else if (chestVar * 100 < 2.5 * ChannelServer.Instance.Conf.World.DropRate)
+			else if (chestVar * 100 < 1 * ChannelServer.Instance.Conf.World.DropRate)
 			{
-				Send.SystemMessage(killer, Localization.Get("[DEBUG] Ordinary Chest get! RNG: " + (int)(chestVar * 100) + ", aka " + chestVar + "/2.5"));
 				var eventDropPos = pos.GetRandomInRange(50, rnd);
 				var eventItem = new Item(91038);							// Ordinary Chest
 				eventItem.Drop(creature.Region, eventDropPos, Item.DropRadius, killer, true);

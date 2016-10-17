@@ -13,12 +13,12 @@ public class PremiumChestRewards : ItemScript
 				list = new List<DropData>();
 				list.Add(new DropData(itemId: 52033, chance: 25, amountMin: 3, amountMax: 6)); 	// Red Coin
 				list.Add(new DropData(itemId: 52032, chance: 25, amountMin: 3, amountMax: 6)); 	// Blue Coin
-				list.Add(new DropData(itemId: 40907, chance: 5)); 	// Dark Knight Two-handed Sword
-				list.Add(new DropData(itemId: 40907, chance: 1, suffix: 31202)); 	// [Jackal] Dark Knight Two-handed Sword
-				list.Add(new DropData(itemId: 40274, chance: 5)); 	// Taillteann Two-handed Sword
-				list.Add(new DropData(itemId: 40274, chance: 1, suffix: 31202)); 	// [Jackal] Taillteann Two-handed Sword
-				list.Add(new DropData(itemId: 40030, chance: 5)); 	// Two-handed Sword
-				list.Add(new DropData(itemId: 40030, chance: 1, suffix: 21008)); 	// [Arc Lich's] Two-handed Sword
+				//list.Add(new DropData(itemId: 40907, chance: 5)); 	// Dark Knight Two-handed Sword
+				//list.Add(new DropData(itemId: 40907, chance: 1, suffix: 31202)); 	// [Jackal] Dark Knight Two-handed Sword
+				//list.Add(new DropData(itemId: 40274, chance: 5)); 	// Taillteann Two-handed Sword
+				//list.Add(new DropData(itemId: 40274, chance: 1, suffix: 31202)); 	// [Jackal] Taillteann Two-handed Sword
+				//list.Add(new DropData(itemId: 40030, chance: 5)); 	// Two-handed Sword
+				//list.Add(new DropData(itemId: 40030, chance: 1, suffix: 21008)); 	// [Arc Lich's] Two-handed Sword
 				list.Add(new DropData(itemId: 63069, chance: 10)); 	// Metal Dye Ampoule
 				list.Add(new DropData(itemId: 63255, chance: 10)); 	// Fixed Metal Dye Ampoule
 				list.Add(new DropData(itemId: 63024, chance: 10)); 	// Dye Ampoule
