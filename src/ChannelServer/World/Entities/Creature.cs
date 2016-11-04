@@ -41,6 +41,8 @@ namespace Aura.Channel.World.Entities
 
 		public const int MaxElementalAffinity = 9;
 
+		public const float ZombieSpeed = 28.6525f;
+
 		private byte _inquiryId;
 		private Dictionary<byte, Action<Creature>> _inquiryCallbacks;
 
@@ -1363,6 +1365,12 @@ namespace Aura.Channel.World.Entities
 			// RaceSpeedFactor
 			if (!this.IsWalking)
 				speed *= this.RaceData.RunSpeedFactor;
+
+			// The Zombie condition reduces speed to that of a Zombie.
+			// We could query it from the speed db, but hardcoding is
+			// more efficient, and it shouldn't be changing anyway.
+			if (this.Conditions.Has(ConditionsC.Zombie))
+				speed = ZombieSpeed;
 
 			// Hurry condition
 			var hurry = this.Conditions.GetExtraVal(169);
@@ -3310,8 +3318,10 @@ namespace Aura.Channel.World.Entities
 			if (item.OwnerId == 0 || item.ProtectionLimit == null || item.ProtectionLimit < DateTime.Now)
 				return true;
 
-			// Return whether creature is the owner
-			return (item.OwnerId == this.EntityId);
+			// Return whether the item's owner is controlled by the
+			// creature's client, this way masters can pick up their
+			// follower's (e.g. pet's) items.
+			return this.Client.Creatures.ContainsKey(item.OwnerId);
 		}
 
 		/// <summary>
