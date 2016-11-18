@@ -66,6 +66,7 @@ namespace Aura.Mabi.Network
 		public const int DisconnectRequest = 0x4E24;
 		public const int DisconnectRequestR = 0x4E25;
 		public const int RequestClientDisconnect = 0x4E26;
+		public const int RequestSecondaryLogin = 0x4E29;
 		public const int Disappear = 0x4E2A;
 		public const int SwitchChannel = 0x4E32;
 		public const int SwitchChannelR = 0x4E33;
@@ -503,6 +504,8 @@ namespace Aura.Mabi.Network
 
 		public const int PetRegister = 0x9024;
 		public const int PetUnregister = 0x9025;
+		public const int StartRP = 0x902A;
+		public const int EndRP = 0x902B;
 		public const int SummonPet = 0x902C;
 		public const int SummonPetR = 0x902D;
 		public const int PersonalShopPetProtectStart = 0x902F;
@@ -592,8 +595,8 @@ namespace Aura.Mabi.Network
 		public const int GuildChangeStone = 0xA8AC;
 		public const int WarpUnk3 = 0xA8AF;
 		public const int SetQuestTimer = 0xA8CF; // Was 0xA8D0 on RE (G13)
-		public const int RemoveQuestTimer = 0xA8D0; // ?
-		public const int UpdateQuestTimerCounter = 0xA8D1;
+		public const int RemoveQuestTimer = 0xA8D0;
+		public const int UpdateQuestTimer = 0xA8D1;
 		public const int UmbrellaJump = 0xA8E0;
 		public const int UmbrellaJumpR = 0xA8E1;
 		public const int UmbrellaLand = 0xA8E2;
@@ -746,6 +749,9 @@ namespace Aura.Mabi.Network
 		// [200100, NA226 (2016-04-14)] Added
 		public const int SpecialUnitInfoRequest = 0x20F86;
 		public const int SpecialUnitInfoRequestR = 0x20F87;
+
+		public const int ErinnLandAchievementsRequest = 0x211DD;
+		public const int ErinnLandAchievementsList = 0x211DE;
 
 		public const int Run = 0x0F213303;
 		public const int Running = 0x0F44BBA3;

@@ -89,15 +89,30 @@ namespace Aura.Channel.World.Entities
 		public ScriptVariables Vars { get; protected set; }
 
 		/// <summary>
-		/// Returns true if creature is a Character or Pet.
+		/// Returns true if creature is a Character, RpCharacter, or Pet.
 		/// </summary>
-		public bool IsPlayer { get { return (this.IsCharacter || this.IsPet); } }
+		/// <remarks>
+		/// This propery is frequently used to determine if a creature should
+		/// get special treatment because it's a player. Player creatures
+		/// can level up, have special events, can keep dynamic regions open,
+		/// and other things.
+		/// 
+		/// TODO: Dedicated properties might be better to determine what a
+		///   creature can do, as they would be more descriptive and easier
+		///   to maintain.
+		/// </remarks>
+		public bool IsPlayer { get { return (this.IsCharacter || this.IsPet || this.IsRpCharacter); } }
 
 		/// <summary>
 		/// Returns true if creature is a character, i.e. a player creature,
 		/// but not a pet/partner.
 		/// </summary>
 		public bool IsCharacter { get { return (this is Character); } }
+
+		/// <summary>
+		/// Returns true if creature is an role-playing character.
+		/// </summary>
+		public bool IsRpCharacter { get { return (this is RpCharacter); } }
 
 		/// <summary>
 		/// Returns true if creature is a pet.
@@ -339,6 +354,12 @@ namespace Aura.Channel.World.Entities
 		/// Shields and similar items are not considered main weapons.
 		/// </summary>
 		public bool IsDualWielding { get { return this.RightHand != null && this.LeftHand != null && this.LeftHand.Data.WeaponType != 0; } }
+
+		/// <summary>
+		/// Returns whether the creature is naturally able to equip/unequip
+		/// items, based on its class.
+		/// </summary>
+		public virtual bool CanMoveEquip { get { return true; } }
 
 		// Movement
 		// ------------------------------------------------------------------
@@ -1373,8 +1394,11 @@ namespace Aura.Channel.World.Entities
 				speed = ZombieSpeed;
 
 			// Hurry condition
-			var hurry = this.Conditions.GetExtraVal(169);
-			speed *= 1 + (hurry / 100f);
+			if (this.Conditions.Has(ConditionsC.Hurry))
+			{
+				var hurry = this.Conditions.GetExtraVal(169);
+				speed *= 1 + (hurry / 100f);
+			}
 
 			return speed;
 		}
@@ -2295,8 +2319,12 @@ namespace Aura.Channel.World.Entities
 					// Only warn when creature was a player, we'll let NPCs fall
 					// back to Human 17 silently, until we know if they
 					// have specific level up stats.
-					if (this.IsPlayer)
-						Log.Warning("Creature.GiveExp: Level up stats missing for race {0}, age {1}. Falling back to Human 17.", this.RaceId, this.Age);
+					//if (this.IsPlayer)
+					//	Log.Warning("Creature.GiveExp: Level up stats missing for race {0}, age {1}. Falling back to Human 17.", this.RaceId, this.Age);
+
+					// Don't warn anymore, as that would put out a warning for
+					// every kill as an RP monster, since only normal
+					// characters and pets have level up stats.
 				}
 			}
 
@@ -2574,9 +2602,14 @@ namespace Aura.Channel.World.Entities
 					break;
 
 				case ReviveOptions.PhoenixFeather:
-					// 10% additional injuries
-					this.Injuries += this.LifeInjured * 0.10f;
-					this.Life = 1;
+					// Only set life if life is not at max, since creatures
+					// will keep their life if they leveled up while dead.
+					if (this.Life < this.LifeMax)
+					{
+						// 10% additional injuries
+						this.Injuries += this.LifeInjured * 0.10f;
+						this.Life = 1;
+					}
 					break;
 
 				case ReviveOptions.WaitForRescue:
@@ -3595,6 +3628,30 @@ namespace Aura.Channel.World.Entities
 				result = item.Data.SplashDamage;
 
 			return result;
+		}
+
+		/// <summary>
+		/// If this creature is an RP character, it returns the player's
+		/// character behind the RP character, if not it just returns itself.
+		/// </summary>
+		/// <remarks>
+		/// Use in cases where you want to execute an action on the actual
+		/// player character, but you don't know if you're working with an
+		/// RP character or not.
+		/// 
+		/// For example, maybe you want to give a player a quest item at the
+		/// end of the dungeon, but the dungeon can be played as RP or
+		/// non-RP. Using just the creature would give it to the RP
+		/// character, with the player never getting it.
+		/// </remarks>
+		/// <returns></returns>
+		public Creature GetActualCreature()
+		{
+			if (!this.IsRpCharacter)
+				return this;
+
+			var rpCharacter = this as RpCharacter;
+			return rpCharacter.Actor;
 		}
 	}
 

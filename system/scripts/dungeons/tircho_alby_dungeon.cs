@@ -104,10 +104,17 @@ public class AlbyDungeonScript : DungeonScript
 				return false;
 			}
 
+			if (creature.Party.HasPets)
+			{
+				Send.MsgBox(creature, L("You may not enter the dungeon; one of the members in your party has summoned an animal."));
+				return false;
+			}
+
 			dungeonName = "g1rp_05_tircho_alby_dungeon";
 			return true;
 		}
 
+<<<<<<< HEAD
 		if (item.Info.Id == 57007 && (creature.Party.Leader.Quests.Has(333333))) // Small Silver Gem with Battle for Light quest
 		{
 			if (creature.Party.MemberCount != 1)
@@ -134,6 +141,85 @@ public class AlbyDungeonScript : DungeonScript
 				dungeonName = "tircho_alby_trans2_dungeon";
 				return true;
 			}
+=======
+		// Giant Spider Fomor Scroll (RP)
+		if (item.Info.Id == 73108)
+		{
+			if (creature.Keywords.Has("RP_Monster_GiantSpider_complete"))
+			{
+				Send.Notice(creature, L("You can't enter this dungeon anymore."));
+				return false;
+			}
+
+			if (creature.Party.MemberCount != 1)
+			{
+				Send.Notice(creature, L("You must enter this dungeon alone."));
+				return false;
+			}
+
+			if (creature.Party.HasPets)
+			{
+				Send.MsgBox(creature, L("You may not enter the dungeon; one of the members in your party has summoned an animal."));
+				return false;
+			}
+
+			dungeonName = "rp_monster_giantspider";
+			return true;
+		}
+
+		// Egg from Caitin (RP)
+		if (item.Info.Id == 73109)
+		{
+			if (creature.Keywords.Has("RP_Monster_Chicken_complete"))
+			{
+				Send.Notice(creature, L("You can't enter this dungeon anymore."));
+				return false;
+			}
+
+			if (creature.Party.MemberCount != 1)
+			{
+				Send.Notice(creature, L("You must enter this dungeon alone."));
+				return false;
+			}
+
+			if (creature.Party.HasPets)
+			{
+				Send.MsgBox(creature, L("You may not enter the dungeon; one of the members in your party has summoned an animal."));
+				return false;
+			}
+
+			dungeonName = "rp_monster_chicken";
+			return true;
+		}
+
+		// Trefor's Gauntlet (RP)
+		if (item.Info.Id == 73103)
+		{
+			if (creature.Keywords.Has("RP_Trefor_Complete"))
+			{
+				Send.Notice(creature, L("You can't enter this dungeon anymore."));
+				return false;
+			}
+
+			if (creature.Party.MemberCount != 1)
+			{
+				Send.Notice(creature, L("You must enter this dungeon alone."));
+				return false;
+			}
+
+			if (creature.Party.HasPets)
+			{
+				Send.MsgBox(creature, L("You may not enter the dungeon; one of the members in your party has summoned an animal."));
+				return false;
+			}
+
+			if (!creature.Keywords.Has("RP_Trefor_Failed_2") && !creature.Keywords.Has("RP_Trefor_Failed_3"))
+				dungeonName = "rp_trefor_tircho_alby_dungeon";
+			else
+				dungeonName = "rp_trefor_tircho_alby_dungeon2";
+
+			return true;
+>>>>>>> c8eb35736b2db53ccf03b0b8331469e2cd5d8795
 		}
 
 		// Fall back for unknown passes

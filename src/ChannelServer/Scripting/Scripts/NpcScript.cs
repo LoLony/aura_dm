@@ -230,6 +230,10 @@ namespace Aura.Channel.Scripting.Scripts
 			{
 				var score = this.GetGiftReaction(gift);
 
+				// Debug output
+				if (this.Player.IsDev)
+					this.Msg(string.Format("-Debug-<br/>Reaction: {0}<br/>Score: {1}", this.NPC.GiftWeights.CalculateScore(gift), score));
+
 				await Hook("before_gift", gift, score);
 
 				await this.Gift(gift, score);
@@ -254,7 +258,7 @@ namespace Aura.Channel.Scripting.Scripts
 		/// <returns></returns>
 		protected virtual async Task Gift(Item gift, GiftReaction reaction)
 		{
-			this.Msg("Thank you.");
+			this.Msg(Localization.Get("Thank you."));
 
 			await Task.Yield();
 		}
@@ -1270,6 +1274,16 @@ namespace Aura.Channel.Scripting.Scripts
 		}
 
 		/// <summary>
+		/// Returns true if a PTJ quest is active and its type matches
+		/// the given one.
+		/// </summary>
+		public bool DoingPtj(PtjType type)
+		{
+			var quest = this.Player.Quests.GetPtjQuest();
+			return (quest != null && quest.Data.PtjType == type);
+		}
+
+		/// <summary>
 		/// Returns true if a PTJ quest is active.
 		/// </summary>
 		public bool DoingPtj()
@@ -1451,6 +1465,18 @@ namespace Aura.Channel.Scripting.Scripts
 		public void Notice(NoticeType type, string format, params object[] args)
 		{
 			Send.Notice(this.Player, type, format, args);
+		}
+
+		/// <summary>
+		/// Displays as notice and system message.
+		/// </summary>
+		/// <param name="type"></param>
+		/// <param name="format"></param>
+		/// <param name="args"></param>
+		public void SystemNotice(string format, params object[] args)
+		{
+			this.Notice(format, args);
+			this.SystemMsg(format, args);
 		}
 
 		/// <summary>

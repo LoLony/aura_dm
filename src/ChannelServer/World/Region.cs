@@ -93,6 +93,18 @@ namespace Aura.Channel.World
 		public event Action<Creature> PlayerLeaves;
 
 		/// <summary>
+		/// Raised when a player was added to the region.
+		/// </summary>
+		/// <remarks>
+		/// Called after all is said and done, and the player is officially
+		/// in this region, unlike PlayerEnters, which is called during the
+		/// warp process, before informing the client about the successful
+		/// warp.
+		/// </remarks>
+		public event Action<Creature, int> PlayerEntered;
+		public void OnPlayerEntered(Creature creature, int prevRegionId) { this.PlayerEntered.Raise(creature, prevRegionId); }
+
+		/// <summary>
 		/// Initializes class.
 		/// </summary>
 		/// <param name="regionId"></param>
@@ -1182,7 +1194,11 @@ namespace Aura.Channel.World
 					if (!(pos.X >= minX && pos.X <= maxX && pos.Y >= minY && pos.Y <= maxY))
 						continue;
 
-					var time = (from.GetDistance(to) / creature.GetSpeed()) * 1000;
+					var speed = creature.GetSpeed();
+					if (speed < 1)
+						speed = 1;
+
+					var time = (from.GetDistance(to) / speed) * 1000;
 
 					npc.AI.Activate(time);
 				}
