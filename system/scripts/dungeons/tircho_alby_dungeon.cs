@@ -19,6 +19,12 @@ public class AlbyDungeonScript : DungeonScript
 		// Rescue Resident quest dungeon
 		if (item.Info.Id == 63180) // Trefor's Pass
 		{
+			if (creature.Party.MemberCount != 1)
+			{
+				Send.Notice(creature, L("You can only enter this dungeon alone."));
+				return false;
+			}
+
 			dungeonName = "tircho_alby_dungeon_tutorial_ranald";
 			return true;
 		}
@@ -26,6 +32,12 @@ public class AlbyDungeonScript : DungeonScript
 		// Malcolm's Ring quest dungeon
 		if (item.Info.Id == 63181) // Malcolm's Pass
 		{
+			if (creature.Party.MemberCount != 1)
+			{
+				Send.Notice(creature, L("You can only enter this dungeon alone."));
+				return false;
+			}
+
 			dungeonName = "tircho_alby_dungeon_tutorial_malcolm";
 			return true;
 		}
@@ -92,7 +104,7 @@ public class AlbyDungeonScript : DungeonScript
 		// Tarlach's Locket (G1 RP)
 		if (item.Info.Id == 73002)
 		{
-			if (!creature.Party.Leader.Keywords.Has("g1_03"))
+			if (!creature.Party.Leader.HasKeyword("g1_03"))
 			{
 				Send.Notice(creature, L("You can't enter this dungeon right now."));
 				return false;
@@ -114,38 +126,10 @@ public class AlbyDungeonScript : DungeonScript
 			return true;
 		}
 
-<<<<<<< HEAD
-		if (item.Info.Id == 57007 && (creature.Party.Leader.Quests.Has(333333))) // Small Silver Gem with Battle for Light quest
-		{
-			if (creature.Party.MemberCount != 1)
-			{
-				Send.Notice(creature, L("You must fight Masterless alone."));
-				return false;
-			}
-			else
-			{
-				dungeonName = "tircho_alby_trans1_dungeon";
-				return true;
-			}
-			
-		}
-		else if (item.Info.Id == 57007 && (creature.Party.Leader.Quests.Has(333334))) // Small Silver Gem with Battle for Darkness quest
-		{
-			if (creature.Party.MemberCount != 1)
-			{
-				Send.Notice(creature, L("You must fight Masterless alone."));
-				return false;
-			}
-			else
-			{
-				dungeonName = "tircho_alby_trans2_dungeon";
-				return true;
-			}
-=======
 		// Giant Spider Fomor Scroll (RP)
 		if (item.Info.Id == 73108)
 		{
-			if (creature.Keywords.Has("RP_Monster_GiantSpider_complete"))
+			if (creature.HasKeyword("RP_Monster_GiantSpider_complete"))
 			{
 				Send.Notice(creature, L("You can't enter this dungeon anymore."));
 				return false;
@@ -170,7 +154,7 @@ public class AlbyDungeonScript : DungeonScript
 		// Egg from Caitin (RP)
 		if (item.Info.Id == 73109)
 		{
-			if (creature.Keywords.Has("RP_Monster_Chicken_complete"))
+			if (creature.HasKeyword("RP_Monster_Chicken_complete"))
 			{
 				Send.Notice(creature, L("You can't enter this dungeon anymore."));
 				return false;
@@ -195,7 +179,7 @@ public class AlbyDungeonScript : DungeonScript
 		// Trefor's Gauntlet (RP)
 		if (item.Info.Id == 73103)
 		{
-			if (creature.Keywords.Has("RP_Trefor_Complete"))
+			if (creature.HasKeyword("RP_Trefor_Complete"))
 			{
 				Send.Notice(creature, L("You can't enter this dungeon anymore."));
 				return false;
@@ -213,13 +197,12 @@ public class AlbyDungeonScript : DungeonScript
 				return false;
 			}
 
-			if (!creature.Keywords.Has("RP_Trefor_Failed_2") && !creature.Keywords.Has("RP_Trefor_Failed_3"))
+			if (!creature.HasKeyword("RP_Trefor_Failed_2") && !creature.HasKeyword("RP_Trefor_Failed_3"))
 				dungeonName = "rp_trefor_tircho_alby_dungeon";
 			else
 				dungeonName = "rp_trefor_tircho_alby_dungeon2";
 
 			return true;
->>>>>>> c8eb35736b2db53ccf03b0b8331469e2cd5d8795
 		}
 
 		// Fall back for unknown passes
@@ -287,11 +270,15 @@ public class AlbyDungeonScript : DungeonScript
 			drops.Add(new DropData(itemId: 51102, chance: 44, amountMin: 1, amountMax: 2)); // Mana Herb
 			drops.Add(new DropData(itemId: 71017, chance: 2, amountMin: 1, amountMax: 2));  // White Spider Fomor Scroll
 			drops.Add(new DropData(itemId: 71019, chance: 2, amountMin: 1, amountMax: 1)); // Red Spider Fomor Scroll
-			drops.Add(new DropData(itemId: 63116, chance: 1, amount: 1, expires: 480)); // Alby Int 1
-			drops.Add(new DropData(itemId: 63117, chance: 1, amount: 1, expires: 480)); // Alby Int 2
-			drops.Add(new DropData(itemId: 63118, chance: 1, amount: 1, expires: 480)); // Alby Int 4
 			drops.Add(new DropData(itemId: 63101, chance: 2, amount: 1, expires: 480)); // Alby Basic
 			drops.Add(new DropData(itemId: 40002, chance: 1, amount: 1, color1: 0x000000, durability: 0)); // Wooden Blade (black)
+
+			if (IsEnabled("AlbyInt"))
+			{
+				drops.Add(new DropData(itemId: 63116, chance: 1, amount: 1, expires: 480)); // Alby Int 1
+				drops.Add(new DropData(itemId: 63117, chance: 1, amount: 1, expires: 480)); // Alby Int 2
+				drops.Add(new DropData(itemId: 63118, chance: 1, amount: 1, expires: 480)); // Alby Int 4
+			}
 
 			if (IsEnabled("AlbyAdvanced"))
 			{

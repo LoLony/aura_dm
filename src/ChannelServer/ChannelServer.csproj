@@ -153,6 +153,7 @@
     <Compile Include="Scripting\NpcSession.cs" />
     <Compile Include="Scripting\Scripts\AiScript.cs" />
     <Compile Include="Scripting\Scripts\DungeonScript.cs" />
+    <Compile Include="Scripting\Scripts\GameEventScript.cs" />
     <Compile Include="Scripting\Scripts\GeneralScript.cs" />
     <Compile Include="Scripting\Scripts\DialogElements.cs" />
     <Compile Include="Scripting\Scripts\ItemScript.cs" />
@@ -183,6 +184,7 @@
     <Compile Include="Skills\Combat\HeavyStander.cs" />
     <Compile Include="Skills\Combat\MagnumShot.cs" />
     <Compile Include="Skills\Combat\ArrowRevolver.cs" />
+    <Compile Include="Skills\Combat\SharpMind.cs" />
     <Compile Include="Skills\Combat\SupportShot.cs" />
     <Compile Include="Skills\Combat\RangedAttack.cs" />
     <Compile Include="Skills\Combat\Smash.cs" />
@@ -196,6 +198,7 @@
     <Compile Include="Skills\Combat\AdministrativePicking2.cs" />
     <Compile Include="Skills\Actions\DiceTossing.cs" />
     <Compile Include="Skills\Hidden\HiddenGuildStoneSetting.cs" />
+    <Compile Include="Skills\Hidden\EnchantElementalAllSlot.cs" />
     <Compile Include="Skills\Magic\Enchant.cs" />
     <Compile Include="Skills\Hidden\HiddenResurrection.cs" />
     <Compile Include="Skills\Hidden\HiddenTownBack.cs" />
@@ -255,7 +258,10 @@
     <Compile Include="World\Dungeons\Generation\MazeMove.cs" />
     <Compile Include="World\Dungeons\Generation\MazeRoomInternal.cs" />
     <Compile Include="World\Dungeons\Generation\Position.cs" />
+    <Compile Include="World\Entities\PlayingInstrumentProp.cs" />
     <Compile Include="World\Entities\RpCharacter.cs" />
+    <Compile Include="World\GameEvents\GameEventManager.cs" />
+    <Compile Include="World\GameEvents\GlobalBonuses.cs" />
     <Compile Include="World\Guilds\GuildManager.cs" />
     <Compile Include="World\Dungeons\Props\Chest.cs" />
     <Compile Include="World\Dungeons\Props\Door.cs" />

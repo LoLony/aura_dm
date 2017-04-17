@@ -71,7 +71,7 @@ public class CiarDungeonScript : DungeonScript
 		// Wizard's Note (G1)
 		if (item.Info.Id == 73024)
 		{
-			if (!creature.Party.Leader.Keywords.Has("g1_25"))
+			if (!creature.Party.Leader.HasKeyword("g1_25"))
 			{
 				Send.Notice(creature, L("You can't enter this dungeon right now."));
 				return false;
@@ -84,7 +84,7 @@ public class CiarDungeonScript : DungeonScript
 		// Tracy's Hatchet (RP)
 		if (item.Info.Id == 73102)
 		{
-			if (creature.Keywords.Has("RP_Tracy_Complete"))
+			if (creature.HasKeyword("RP_Tracy_Complete"))
 			{
 				Send.Notice(creature, L("You can't enter this dungeon anymore."));
 				return false;
@@ -182,10 +182,14 @@ public class CiarDungeonScript : DungeonScript
 			drops.Add(new DropData(itemId: 71037, chance: 4, amountMin: 2, amountMax: 4)); // Goblin Fomor Scroll
 			drops.Add(new DropData(itemId: 71035, chance: 4, amountMin: 3, amountMax: 5)); // Gray Town Rat Fomor Scroll
 			drops.Add(new DropData(itemId: 63104, chance: 3, amount: 1, expires: 480)); // Ciar Basic Fomor Pass
-			drops.Add(new DropData(itemId: 63123, chance: 2, amount: 1, expires: 480)); // Ciar Intermediate Fomor Pass for One
-			drops.Add(new DropData(itemId: 63124, chance: 2, amount: 1, expires: 480)); // Ciar Intermediate Fomor Pass for Two
-			drops.Add(new DropData(itemId: 63125, chance: 2, amount: 1, expires: 480)); // Ciar Intermediate Fomor Pass for Four
 			drops.Add(new DropData(itemId: 40006, chance: 2, amount: 1, color1: 0xFFDB60, durability: 0)); // Dagger (gold)
+
+			if (IsEnabled("CiarInt"))
+			{
+				drops.Add(new DropData(itemId: 63123, chance: 2, amount: 1, expires: 480)); // Ciar Intermediate Fomor Pass for One
+				drops.Add(new DropData(itemId: 63124, chance: 2, amount: 1, expires: 480)); // Ciar Intermediate Fomor Pass for Two
+				drops.Add(new DropData(itemId: 63125, chance: 2, amount: 1, expires: 480)); // Ciar Intermediate Fomor Pass for Four
+			}
 
 			if (IsEnabled("CiarAdvanced"))
 			{

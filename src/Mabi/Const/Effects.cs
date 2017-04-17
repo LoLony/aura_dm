@@ -113,11 +113,6 @@ namespace Aura.Mabi.Const
 		/// </summary>
 		public static readonly int FireballFly = 39;
 
-        /// <summary>
-        /// The effect to signal the Dark Knight Passives engaging
-        /// </summary>
-        public static readonly int DkPassiveEngage = 62;
-
 		/// <summary>
 		/// The frozen effect of Ice Spear
 		/// </summary>

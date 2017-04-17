@@ -10,9 +10,5 @@
 //custom/telephant.cs
 //custom/oriental_town.cs
 //custom/points_shop.cs
-//items/good_luck_potion.cs
-custom/treasure_chest.cs
-custom/ordinary_chest_rewards.cs
-custom/premium_chest_rewards.cs
 
 include "/user/scripts/scripts_custom.txt"

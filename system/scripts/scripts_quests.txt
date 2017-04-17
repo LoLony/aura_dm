@@ -80,6 +80,7 @@ quests/ptj/healer_manus.cs
 quests/ptj/inn_piaras.cs
 quests/ptj/library_stewart.cs
 quests/ptj/neighboring_deian.cs
+quests/ptj/blacksmith_edern.cs
 quests/ptj/blacksmith_elen.cs
 quests/ptj/stope_sion.cs
 quests/ptj/blacksmith_ferghus.cs
@@ -89,9 +90,11 @@ quests/ptj/wepshop_nerys.cs
 quests/ptj/woodcutting_tracy.cs
 
 // Skills
+quests/skills/105_arrow_revolver.cs
 quests/skills/20006_elen_refine.cs
 quests/skills/20007_ranald_windmill.cs
 quests/skills/200063_dilys_herbalism.cs
+quests/skills/200042_manus_herbalism.cs
 quests/skills/204003_malcolm_weaving_g7.cs
 
 // Scroll Hunting
@@ -112,6 +115,9 @@ quests/collection/1009_collect_5_small_silver_gems.cs
 quests/collection/1010_collect_branches.cs
 quests/collection/1011_collect_berries.cs
 quests/collection/1012_collect_nails.cs
+quests/collection/1016_largeiceelemental.cs
+quests/collection/1017_largefireelemental.cs
+quests/collection/1018_largelightningelemental.cs
 quests/collection/40004_bigorder_milk.cs
 quests/collection/40005_bigorder_firewood.cs
 quests/collection/40020_bigorder_iron_ingots.cs
@@ -128,9 +134,6 @@ quests/collection/60025_cook_a_hard-boiled_egg.cs
 quests/collection/60026_make_some_flour_dough.cs
 quests/collection/60027_make_some_fry_batter.cs
 quests/collection/60028_make_some_rice.cs
-
-// DK/Paladin Silly Quests
-quests/333333_masterless_duel.cs
 
 // Mainstream
 require "quests/mainstream/scripts_g1.txt"

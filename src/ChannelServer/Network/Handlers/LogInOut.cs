@@ -465,24 +465,31 @@ namespace Aura.Channel.Network.Handlers
 				Send.EntitiesDisappear(playerCreature.Client, playerCreature.Region.GetVisibleEntities(playerCreature));
 			}
 
+			if (!rebirth)
+				Log.Info("'{0}' is switching channels. Saving...", client.Account.Id);
+			else
+				Log.Info("'{0}' is reconnecting for rebirth. Saving...", client.Account.Id);
+
+			client.CleanUp();
+
 			// Success
 			Send.SwitchChannelR(creature, channel);
 		}
 
-	        /// <summary>
-	        /// Dummy handler for DcUnk.
-	        /// </summary>
-	        /// <remarks>
-	        /// Sent on logout, purpose unknown. Client waits for an answer,
-	        /// which makes logging out impossible without sending DcUnkR.
-	        /// </remarks>
-	        /// <example>
-	        /// No parameters.
-	        /// </example>
-	        [PacketHandler(Op.DcUnk)]
-	        public void DcUnk(ChannelClient client, Packet packet)
-	        {
-	                Send.DcUnkR(client, 0);
-	        }
+		/// <summary>
+		/// Dummy handler for DcUnk.
+		/// </summary>
+		/// <remarks>
+		/// Sent on logout, purpose unknown. Client waits for an answer,
+		/// which makes logging out impossible without sending DcUnkR.
+		/// </remarks>
+		/// <example>
+		/// No parameters.
+		/// </example>
+		[PacketHandler(Op.DcUnk)]
+		public void DcUnk(ChannelClient client, Packet packet)
+		{
+			Send.DcUnkR(client, 0);
+		}
 	}
 }
